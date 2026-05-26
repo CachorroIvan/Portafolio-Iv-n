@@ -1,0 +1,79 @@
+---
+import CardProject from '../cards/CardProject.astro';
+
+const projects = [
+    {
+        title: "Calculadora de Polarización BJT",
+        description: "Herramienta de ingeniería para calcular y graficar la recta de carga y el punto Q (ICQ, VCEQ) de transistores. Soporta múltiples configuraciones.",
+        tech: ["JavaScript", "Matemáticas", "Data Viz", "CSS"],
+        link: "https://polarizacion-bjt.netlify.app",
+        github: "https://github.com/CachorroIvan/Polarizaci-n-BJT.git",
+        status: "Desplegado",
+        color: "from-[#00ffff] to-blue-500",
+        gallery: ["works/bjt/bjt1.png", "works/bjt/bjt2.png", "works/bjt/bjt3.png", "works/bjt/bjt4.png", "works/bjt/bjt5.png"] 
+    },
+    {
+        title: "Desarrollo Web Custom (Freelance)",
+        description: "Diseño y desarrollo de portafolios profesionales para ingenieros. Creación de interfaces Light/Dark themes y optimización de rendimiento.",
+        tech: ["Astro", "Tailwind CSS", "UI/UX"],
+        link: [
+            "https://portafolio-albertodlm.netlify.app", 
+            "https://joshua-portafolio.netlify.app" 
+        ],
+        github: [
+            "https://github.com/CachorroIvan/Portafolio-Alberto.git",
+            "https://github.com/CachorroIvan/Portafolio-Joshua.git"],
+        status: "Desplegados",
+        color: "from-orange-400 to-amber-500",
+        gallery: ["works/freelance/Beto.png", "works/freelance/Josh.png"]
+    },
+    {
+        title: "Crypto Price Tracker",
+        description: "Aplicación web que consume una API externa para monitorear el precio de criptomonedas en tiempo real. Interfaz estilizada y responsiva.",
+        tech: ["Vue.js", "API REST", "SASS"],
+        link: "https://frabjous-dieffenbachia-bc4288.netlify.app",
+        github: "https://github.com/CachorroIvan/cripto-managment.git",
+        status: "Desplegado",
+        color: "from-[#ff007f] to-rose-500",
+        gallery: ["works/Cripto/bitcoin.png", "works/Cripto/cripto.png", "works/Cripto/dollar.png", "works/Cripto/litecoin.png",]
+    },
+    {
+        title: "Task Manager App",
+        description: "Plataforma de gestión de tareas con seguimiento de progreso mediante barra de estado. Construida con un enfoque en la reactividad de datos.",
+        tech: ["Vue.js", "Bootstrap", "JavaScript"],
+        link: "#",
+        github: "https://github.com/CachorroIvan/task-organizer.git",
+        status: "Repositorio Activo",
+        color: "from-emerald-400 to-teal-500",
+        gallery: ["works/Task/complete.png", "works/Task/task.png", "works/Task/To-Do.png"]
+    },
+    {
+        title: "Gift Router",
+        description: "Página web que extrae gifts y stickers de una API externa llamada Giphy. Permite a los usuarios buscar y visualizar contenido multimedia de forma rápida y sencilla.",
+        tech: ["Vue.js", "Bootstrap", "UI/UX", "API REST"],
+        link: "https://gift-router.netlify.app",
+        github: "https://github.com/CachorroIvan/Gif-Router.git", 
+        status: "Desplegado",
+        color: "from-orange-400 to-amber-500", 
+        gallery: ["/works/gift/home.png", "works/gift/gifts.png", "works/gift/stickers.png"]
+    }
+];
+---
+<section id="proyectos" class="section-spacing">
+    <div class="container-base">
+        <div class="heading-section">
+            <h2 class="heading-main">
+                Proyectos <span class="text-transparent bg-clip-text bg-linear-to-r from-[#00ffff] to-[#ff007f]">Destacados</span>
+            </h2>
+            <p class="heading-description">Soluciones funcionales, consumo de APIs y herramientas de ingeniería.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 md:gap-8">
+            {projects.map((project, index) => (
+                <div data-aos="fade-up" data-aos-delay={index * 100}>
+                    <CardProject {...project} reverse={index % 2 === 1} />
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

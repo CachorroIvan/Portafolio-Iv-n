@@ -1,0 +1,118 @@
+---
+import LanguagePicker from '../ui/LanguagePicker.astro';
+
+const { currentLang = 'es' } = Astro.props;
+
+// Diccionario de traducciones
+const navText = {
+    es: {
+        about: "Sobre mí", exp: "Experiencia", proj: "Proyectos", 
+        cert: "Certificados", stack: "Tech Stack", contact: "Contacto", cv: "Descargar CV"
+    },
+    en: {
+        about: "About", exp: "Experience", proj: "Projects", 
+        cert: "Certifications", stack: "Tech Stack", contact: "Contact", cv: "Download CV"
+    }
+};
+const t = navText[currentLang];
+---
+
+<header class="fixed top-0 left-0 w-full z-60 border-b border-white/10 bg-white/5 backdrop-blur-md rounded-b-2xl">
+    <nav class="container mx-auto px-4 sm:px-6 h-16 sm:h-20 flex items-center justify-between">
+        
+        <a href="#inicio" class="group flex items-center gap-1 font-mono text-2xl sm:text-3xl font-bold hover:scale-105 transition-transform duration-300">
+            <span class="text-white">[</span>
+            <span class="text-[#00ffff] group-hover:text-[#ff007f] transition-colors duration-300">I</span>
+            <span class="text-[#ff007f] group-hover:text-[#00ffff] transition-colors duration-300">G</span>
+            <span class="text-white">]</span>
+        </a>
+
+        <ul class="hidden md:flex items-center gap-4 lg:gap-8 text-xs lg:text-sm font-medium tracking-widest uppercase text-gray-300">
+            <li><a href="#sobre-mi" class="nav-link hover:text-[#00ffff] transition-colors duration-300">{t.about}</a></li>
+            <li><a href="#experiencia" class="nav-link hover:text-[#00ffff] transition-colors duration-300">{t.exp}</a></li>
+            <li><a href="#proyectos" class="nav-link hover:text-[#00ffff] transition-colors duration-300">{t.proj}</a></li>
+            <li><a href="#certificaciones" class="nav-link hover:text-[#00ffff] transition-colors duration-300">{t.cert}</a></li>
+            <li><a href="#stack" class="nav-link hover:text-[#00ffff] transition-colors duration-300">{t.stack}</a></li>
+            <li><a href="#contacto" class="nav-link hover:text-[#00ffff] transition-colors duration-300">{t.contact}</a></li>
+        </ul>
+
+        <div class="hidden md:flex items-center gap-4">
+            <LanguagePicker currentLang={currentLang} />
+
+            <a href="https://drive.google.com/file/d/1Ach6F2GeKDzFNFJF68iY5cGvPxh3lQWV/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="px-5 py-2.5 border-4 rounded-full border-[#ff007f] text-[#df87b3] hover:bg-[#ff007f] hover:text-white transition-all duration-300 text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(255,0,127,0.3)] hover:shadow-[0_0_25px_rgba(255,0,127,0.6)]">
+                {t.cv}
+            </a>
+        </div>
+
+        <button id="menu-btn" class="md:hidden relative p-2 bg-white/5 border border-white/10 rounded-lg text-[#00ffff] hover:text-[#ff007f] hover:border-[#ff007f]/50 hover:bg-[#ff007f]/10 hover:shadow-[0_0_15px_rgba(255,0,127,0.3)] transition-all duration-300 focus:outline-none" aria-label="Menu">
+            <svg id="icon-open" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path></svg>
+            <svg id="icon-close" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-7 h-7 hidden"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+
+    </nav>
+</header>
+
+<div id="mobile-menu" class="fixed inset-0 z-50 bg-[#0d0c1e]/95 backdrop-blur-xl transform translate-x-full transition-transform duration-300 ease-in-out md:hidden flex flex-col justify-center items-center space-y-6 pt-16">
+    <a href="#sobre-mi" class="text-xl font-bold text-white hover:text-[#00ffff] tracking-widest uppercase mobile-link transition-colors">{t.about}</a>
+    <a href="#experiencia" class="text-xl font-bold text-white hover:text-[#00ffff] tracking-widest uppercase mobile-link transition-colors">{t.exp}</a>
+    <a href="#proyectos" class="text-xl font-bold text-white hover:text-[#00ffff] tracking-widest uppercase mobile-link transition-colors">{t.proj}</a>
+    <a href="#certificaciones" class="text-xl font-bold text-white hover:text-[#00ffff] tracking-widest uppercase mobile-link transition-colors">{t.cert}</a>
+    <a href="#stack" class="text-xl font-bold text-white hover:text-[#00ffff] tracking-widest uppercase mobile-link transition-colors">{t.stack}</a>
+    <a href="#contacto" class="text-xl font-bold text-white hover:text-[#00ffff] tracking-widest uppercase mobile-link transition-colors">{t.contact}</a>
+    
+    <div class="mt-6">
+        <LanguagePicker currentLang={currentLang} />
+    </div>
+    <a href="https://drive.google.com/file/d/1Ach6F2GeKDzFNFJF68iY5cGvPxh3lQWV/view?usp=sharing" target="_blank" rel="noopener noreferrer" class="mt-8 px-6 py-3 border-2 rounded-full border-[#ff007f] text-[#ff007f] hover:bg-[#ff007f] hover:text-white transition-all duration-300 text-sm font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(255,0,127,0.3)]">
+        {t.cv}
+    </a>
+</div>
+
+<script is:inline>
+  // Cambiamos DOMContentLoaded por astro:page-load
+  document.addEventListener('astro:page-load', () => {
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const iconOpen = document.getElementById('icon-open');
+    const iconClose = document.getElementById('icon-close');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    if (!menuBtn) return;
+
+    function toggleMenu() {
+      if (mobileMenu && iconOpen && iconClose) {
+        mobileMenu.classList.toggle('translate-x-full');
+        iconOpen.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+        const isOpen = !mobileMenu.classList.contains('translate-x-full');
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      }
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', toggleMenu);
+    });
+
+    const observerOptions = { root: null, rootMargin: '-20% 0px -70% 0px', threshold: 0 };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute('id');
+          document.querySelectorAll('.nav-link, .mobile-link').forEach((link) => {
+            const href = link.getAttribute('href');
+            if (href === `#${id}`) {
+              link.classList.add('text-[#ff007f]');
+              link.classList.remove('text-white');
+            } else {
+              link.classList.remove('text-[#ff007f]');
+              link.classList.add('text-white');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+    document.querySelectorAll('section[id]').forEach((section) => observer.observe(section));
+  });
+</script>

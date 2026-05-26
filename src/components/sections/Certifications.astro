@@ -1,0 +1,73 @@
+---
+import CardCertificate from '../cards/CardCertificate.astro';
+
+const certificates = [
+    {
+        title: "JavaScript, Bootstrap & PHP",
+        category: "Web Development",
+        year: "2021",
+        description: "Formación integral en CSS, JavaScript y PHP para la creación de aplicaciones web dinámicas.",
+        image: "/certificates/DesarrolloWeb.jpg", 
+        color: "from-blue-400 to-indigo-500"
+    },
+    {
+        title: "Vue.js 3 Desde Cero",
+        category: "Vue.js Framework",
+        year: "2025",
+        description: "Especializado en la creación de interfaces de usuario reactivas y modernas utilizando el ecosistema Vue.",
+        image: "/certificates/vue3.jpg", 
+        color: "from-emerald-400 to-teal-500"
+    },
+    {
+        title: "Desarrollo web ultra rápido con Astro",
+        category: "Astro Mastery",
+        year: "2025",
+        description: "Profundiza en los sitios web basados ​​en contenido con la arquitectura de islas Astro.",
+        image: "/certificates/astro.jpg",
+        color: "from-orange-400 to-rose-500"
+    },
+    {
+        title: "Fundamentos de Arquitectura de Software",
+        category: "Software Architecture",
+        year: "2025",
+        description: "Principios de diseño, escalabilidad y estructura para sistemas de software robustos.",
+        image: "/certificates/Arquitectura.png",
+        color: "from-[#00ffff] to-blue-500"
+    },
+    {
+        title: "NodeJS: Beginner Practical Guide",
+        category: "Backend with Node.js",
+        year: "2025",
+        description: "Desarrollo de aplicaciones escalables del lado del servidor, API REST e integraciones de bases de datos.",
+        image: "/certificates/nodejs.jpg",
+        color: "from-green-400 to-emerald-600"
+    },
+    {
+        title: "Aprende Photoshop en 18 días",
+        category: "Graphic Design",
+        year: "2021",
+        description: "Experto en manipulación de imágenes digitales y creación de activos visuales para UI/UX modernos.",
+        image: "/certificates/photoshop.jpg",
+        color: "from-purple-400 to-[#ff007f]"
+    }
+];
+---
+
+<section id="certificaciones" class="section-spacing ">
+    <div class="container-base">
+        
+        <div class="heading-section">
+            <h2 class="heading-main">
+                Mis <span class="text-transparent bg-clip-text bg-linear-to-r from-purple-500 to-[#ff007f]">Certificaciones</span>
+            </h2>
+            <p class="heading-description">Habilidades validadas y crecimiento profesional continuo.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {certificates.map((cert) => (
+                <CardCertificate {...cert} />
+            ))}
+        </div>
+        
+    </div>
+</section>

@@ -1,0 +1,113 @@
+---
+
+---
+<dialog id="gallery-modal" class="backdrop:bg-black/80 backdrop:backdrop-blur-sm bg-transparent w-full max-w-5xl m-auto p-4 rounded-2xl shadow-2xl flex-col items-center justify-center hidden open:flex">
+    <div class="relative w-full bg-[#0d0c1e] border border-white/10 rounded-2xl overflow-hidden shadow-2xl">
+        <button id="close-modal-btn" class="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-red-500 text-white rounded-full backdrop-blur-md transition-colors">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+        <div class="relative flex items-center justify-center min-h-[40vh] md:min-h-[60vh] bg-black/40 p-4 md:p-8">
+            <img id="modal-image" src="" alt="Captura del proyecto" class="max-h-[70vh] w-auto object-contain rounded-lg shadow-lg transition-opacity duration-300" />
+            <button id="prev-btn" class="absolute left-4 p-3 bg-black/50 hover:bg-[#00ffff] text-white hover:text-black rounded-full backdrop-blur-md transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+            </button>
+            <button id="next-btn" class="absolute right-4 p-3 bg-black/50 hover:bg-[#00ffff] text-white hover:text-black rounded-full backdrop-blur-md transition-colors">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+            </button>
+        </div>
+        <div class="bg-[#1a1941] border-t border-white/10 p-4 text-center">
+            <span id="image-counter" class="text-sm font-mono text-gray-400">1 / 1</span>
+        </div>
+    </div>
+</dialog>
+
+<script is:inline>
+    document.addEventListener('astro:page-load', () => {
+        const modal = document.getElementById('gallery-modal');
+        const modalImg = document.getElementById('modal-image');
+        const closeBtn = document.getElementById('close-modal-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const prevBtn = document.getElementById('prev-btn');
+        const counter = document.getElementById('image-counter');
+        
+
+        const openBtns = document.querySelectorAll('.open-gallery-btn');
+
+        if (!modal) return;
+
+        let currentImages = [];
+        let currentIndex = 0;
+
+        const updateCarousel = () => {
+            if (currentImages.length > 0 && modalImg) {
+                modalImg.style.opacity = '0.5';
+                setTimeout(() => {
+                    modalImg.src = currentImages[currentIndex];
+                    modalImg.style.opacity = '1';
+                }, 150);
+                if (counter) counter.textContent = `${currentIndex + 1} / ${currentImages.length}`;
+                
+                const displayBtns = currentImages.length > 1 ? 'block' : 'none';
+                if(nextBtn) nextBtn.style.display = displayBtns;
+                if(prevBtn) prevBtn.style.display = displayBtns;
+            }
+        };
+
+        openBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const imagesData = btn.getAttribute('data-images');
+                if (imagesData) {
+                    try {
+                        currentImages = JSON.parse(imagesData);
+                    } catch (err) {
+                        currentImages = [];
+                    }
+                    currentIndex = 0;
+                    updateCarousel();
+                    if (typeof modal.showModal === 'function') {
+                        modal.showModal();
+                        document.body.style.overflow = 'hidden';
+                    }
+                }
+            });
+        });
+
+        closeBtn?.addEventListener('click', () => {
+            if (typeof modal.close === 'function') modal.close();
+            document.body.style.overflow = 'auto';
+            if (modalImg) modalImg.src = ''; 
+        });
+
+        nextBtn?.addEventListener('click', () => {
+            if (currentImages.length > 0) {
+                currentIndex = (currentIndex + 1) % currentImages.length;
+                updateCarousel();
+            }
+        });
+
+        prevBtn?.addEventListener('click', () => {
+            if (currentImages.length > 0) {
+                currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+                updateCarousel();
+            }
+        });
+
+        modal?.addEventListener('click', (e) => {
+            const dialogDimensions = modal.getBoundingClientRect();
+            if (
+                e.clientX < dialogDimensions.left || e.clientX > dialogDimensions.right ||
+                e.clientY < dialogDimensions.top || e.clientY > dialogDimensions.bottom
+            ) {
+                if (typeof modal.close === 'function') modal.close();
+                document.body.style.overflow = 'auto';
+            }
+        });
+    });
+</script>
+
+<style>
+    dialog::backdrop {
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(4px);
+    }
+</style>

@@ -1,0 +1,48 @@
+---
+import CardExperience from '../../cards/CardExperience.astro';
+
+const experiences = [
+    {
+        title: "Full Stack Developer & Frontend Specialist",
+        company: "Kinasis",
+        period: "2025 - Present",
+        description: "Responsible for developing and maintaining web applications using modern technologies. Implementation of responsive user interfaces with Vue.js and Tailwind CSS, and development of backend functionalities with Node.js and Electron for desktop solutions.",
+        tech: ["Electron", "Vue.js", "Node.js", "Tailwind CSS", "JavaScript", "Python"],
+        color: "from-[#ff007f] to-[#ff007f]/50"
+    },
+    {
+        title: "QA & Technical Auditor",
+        company: "Claro Cloud",
+        period: "2026 - Present",
+        description: "Execution of technical audits for the web portal network in the LATAM region (Peru, Argentina, Chile, Uruguay, Nicaragua, etc.). Identification, documentation and reporting of UI/UX bugs to ensure the quality of deployments in production.",
+        tech: ["QA", "Web Audit", "UI/UX", "PhpCollab"],
+        color: "from-[#00ffff] to-[#00ffff]/50"
+    },
+    {
+        title: "Engineering in Computing",
+        company: "ESIME Culhuacán (IPN)",
+        period: "2022 - Present",
+        description: "Integral training in computer science, algorithms and hardware/software design. Development of advanced academic projects using C++, Python, Matlab and electronics to solve complex problems and optimize computational systems.",
+        tech: ["C++", "Python", "Matlab", "Electronics"],
+        color: "from-purple-500 to-purple-500/50"
+    }
+];
+---
+
+<section id="experiencia" class="section-spacing">
+    <div class="container-base">
+        <div class="heading-section">
+            <h2 class="heading-main">
+                My <span class="text-transparent bg-clip-text bg-linear-to-r from-[#00ffff] to-[#ff007f]">Experience</span>
+            </h2>
+            <p class="heading-description">Professional experience and academic training.</p>
+        </div>
+
+        <div class="relative border-l-2 border-white/10 ml-2 md:ml-6 space-y-8 md:space-y-12">
+            {experiences.map((exp) => (
+                <CardExperience {...exp} />
+            ))}
+        </div>
+    </div>
+</section>
+

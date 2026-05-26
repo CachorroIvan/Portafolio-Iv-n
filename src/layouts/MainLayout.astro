@@ -1,0 +1,208 @@
+---
+import HeaderLayout from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro'; 
+import '../styles/global.css';
+import GalleryModal from '../components/ui/GalleryModal.astro';
+
+import { ClientRouter } from 'astro:transitions';
+
+interface Props {
+	title: string;
+    lang?: 'es' | 'en'; 
+}
+
+const { title, lang = 'es' } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+	<head>
+		<meta charset="UTF-8" />
+        <meta property="og:title" content={`${title} | Ivan González - Full Stack Developer`} /> 
+        <meta property="og:description" content="Portafolio de Ivan González, desarrollador Full Stack especializado en experiencias web modernas y gestión de proyectos TI." />
+        <meta property="og:image" content="/img/preview/Preview.png" />   
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/logo-ig.svg" />
+		<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+		<meta name="generator" content={Astro.generator} />
+		<title>{title} | Ivan González - Full Stack Developer</title>
+        <ClientRouter />
+	</head>
+    <body class="bg-[#0a0914] text-white antialiased selection:bg-[#ff007f] selection:text-white">
+		
+        <div class="background-aurora fixed inset-0 z-[-1] overflow-hidden">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="blob blob-4"></div>
+            <div class="blob blob-5"></div>
+            <div class="blob blob-6"></div>
+        </div>
+        <div class="relative z-10 min-h-screen flex flex-col">
+            <HeaderLayout currentLang={lang}/>
+            
+            <main class="grow container mx-auto px-4 md:px-6 py-8">
+                <slot />
+            </main>
+            <GalleryModal />
+            <Footer currentLang={lang} />
+        </div>
+
+        <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script is:inline>
+            function initAOS() {
+                if (typeof AOS === 'undefined') {
+                    console.error('AOS no se cargó correctamente.');
+                    return;
+                }
+
+                AOS.init({
+                    once: false,
+                    offset: 120,
+                    duration: 800,
+                    easing: 'ease-out-cubic',
+                    delay: 0,
+                });
+            }
+
+            if (document.readyState === 'loading') {
+                document.addEventListener('astro:page-load', initAOS);
+            } else {
+                initAOS();
+            }
+
+            const observer = new MutationObserver(() => {
+                if (typeof AOS !== 'undefined') {
+                    AOS.refresh();
+                }
+            });
+
+            observer.observe(document.body, {
+                childList: true,
+                subtree: true,
+                attributes: false,
+            });
+
+            let scrollTimeout;
+            window.addEventListener('scroll', () => {
+                clearTimeout(scrollTimeout);
+                scrollTimeout = setTimeout(() => {
+                    if (typeof AOS !== 'undefined') {
+                        AOS.refresh();
+                    }
+                }, 150);
+            });
+
+            // 1. Interceptamos el clic en los botones de idioma para guardar la posición exacta
+            document.addEventListener('click', (e) => {
+                const langBtn = e.target.closest('.lang-switch');
+                if (langBtn) {
+                    sessionStorage.setItem('savedScroll', window.scrollY);
+                }
+            });
+
+            // 2. Restauramos la posición milisegundos antes de que el navegador dibuje la nueva página
+            document.addEventListener('astro:after-swap', () => {
+                const savedScroll = sessionStorage.getItem('savedScroll');
+                if (savedScroll !== null) {
+                    // El behavior 'instant' es clave para que no haga animación de subida/bajada
+                    window.scrollTo({ top: parseInt(savedScroll, 10), behavior: 'instant' });
+                    sessionStorage.removeItem('savedScroll'); // Limpiamos la memoria
+                }
+            });
+        </script>
+	</body>
+</html>
+
+<style>
+    .background-aurora {
+        background: #0d0c1e;
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        overflow: hidden;
+    }
+    .blob {
+        position: absolute;
+        width: 80vw; 
+        height: 80vw;
+        border-radius: 50%;
+        filter: blur(150px); 
+        opacity: 0.6; 
+        animation: auroraMove 35s infinite ease-in-out; 
+    }
+
+    .blob-1 {
+        background-color: #ff007f;
+        top: -20%;
+        left: -20%;
+        animation-delay: -8s;
+    }
+
+    .blob-2 {
+        background-color: #00ffff; 
+        bottom: -30%;
+        right: -20%;
+        animation-delay: -16s;
+    }
+
+    .blob-3 {
+        background-color: #9F47FF;
+        top: 50%;
+        left: 20%;
+        width: 50vw;
+        height: 50vw;
+        animation-delay: -18s;
+        animation-duration: 18s;
+    }
+
+    .blob-4 {
+        background-color: #3f00ff;
+        top: 20%;
+        right: 10%;
+        width: 40vw;
+        height: 40vw;
+        animation-delay: -1.5s;
+        animation-duration: 14s;
+    }
+    .blob-5 {
+        background-color: #57189a;
+        top: 20%;
+        right: 10%;
+        width: 20vw;
+        height: 20vw;
+        animation-delay: -1.5s;
+        animation-duration: 16s;
+    }
+    .blob-6 {
+        background-color: #730264;
+        top: 40%;
+        right: 20%;
+        width: 80vw;
+        height: 40vw;
+        animation-delay: -1.5s;
+        animation-duration: 18s;
+    }
+
+    @keyframes auroraMove {
+        0%, 100% {
+            transform: translate(0, 0) scale(1) rotate(0deg);
+        }
+        25% {
+            transform: translate(150px, -100px) scale(1.1) rotate(5deg);
+        }
+        50% {
+            transform: translate(-100px, 150px) scale(0.9) rotate(-5deg);
+        }
+        75% {
+            transform: translate(100px, 100px) scale(1.05) rotate(2deg);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .blob {
+            animation: none;
+            transform: none;
+        }
+    }
+</style>

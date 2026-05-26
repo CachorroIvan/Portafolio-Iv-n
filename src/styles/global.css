@@ -1,0 +1,65 @@
+
+@import "tailwindcss";
+
+:root {
+  --color-bg-dark: #0d0c1e;
+  --color-neon-pink: #ff007f;
+  --color-neon-cyan: #00ffff;
+}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    background-color: var(--color-bg-dark);
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  ::selection {
+    background-color: var(--color-neon-pink);
+    color: white;
+  }
+}
+
+@layer components {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-linear-to-r from-[#00ffff] to-[#ff007f];
+  }
+
+  /* Global container and responsive utilities */
+  .container-base {
+    @apply w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-spacing {
+    @apply py-12 sm:py-16 md:py-24 relative z-10;
+  }
+
+  .heading-main {
+    @apply text-2xl sm:text-4xl md:text-5xl lg:text-5xl font-bold text-white mb-2 sm:mb-4;
+  }
+
+  .heading-description {
+    @apply text-gray-400 text-xs sm:text-sm md:text-base lg:text-lg;
+  }
+
+  .heading-section {
+    @apply text-center mb-12 sm:mb-16 md:mb-20;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0c1e; 
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2859; 
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff007f; 
+}

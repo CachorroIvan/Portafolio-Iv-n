@@ -1,0 +1,48 @@
+---
+export interface Props {
+    title: string;
+    category: string;
+    year: string;
+    description: string;
+    image: string;
+    color: string;
+}
+
+const { title, category, year, description, image, color } = Astro.props;
+---
+<div data-aos="fade-up" class="h-full">
+    <div class="group relative rounded-2xl bg-[#1a1941]/40 border border-white/10 overflow-hidden backdrop-blur-sm hover:-translate-y-2 transition-all duration-300 hover:shadow-[0_0_30px_rgba(255,255,255,0.05)] flex flex-col h-full">
+        
+        <div class="relative h-48 sm:h-56 overflow-hidden bg-white/5 border-b border-white/10">
+            <img 
+                src={image} 
+                alt={`Certificado ${title}`} 
+                class="w-full h-full object-cover object-top opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500" 
+            />
+            
+            <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center backdrop-blur-sm">
+                <button 
+                    class="open-gallery-btn px-6 py-2.5 rounded-full bg-[#ff007f] hover:bg-[#ff007f]/80 text-white font-bold text-sm transform translate-y-4 group-hover:translate-y-0 transition-all duration-300 shadow-[0_0_15px_rgba(255,0,127,0.4)]"
+                    data-images={JSON.stringify([image])}
+                >
+                    Ver Certificado
+                </button>
+            </div>
+        </div>
+        
+        <div class="p-6 flex flex-col grow">
+            <div class="flex justify-between items-center mb-3">
+                <span class={`text-xs font-bold tracking-widest uppercase text-transparent bg-clip-text bg-linear-to-r ${color}`}>
+                    {category}
+                </span>
+                <span class="text-xs font-mono text-gray-500 bg-white/5 px-2 py-1 rounded">
+                    {year}
+                </span>
+            </div>
+            
+            <p class="text-gray-300 text-sm leading-relaxed mt-2">
+                {description}
+            </p>
+        </div>
+    </div>
+</div>

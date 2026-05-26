@@ -1,0 +1,25 @@
+---
+export interface Props {
+    currentLang?: 'es' | 'en';
+}
+
+const { currentLang = 'es' } = Astro.props;
+---
+
+<div class="flex items-center gap-3 bg-white/5 border border-white/10 px-3 py-1.5 rounded-full backdrop-blur-sm">
+    <a 
+        href="/" 
+        class={`lang-switch text-xs font-bold transition-all duration-300 ${currentLang === 'es' ? ' text-[#00ffff] drop-shadow-[0_0_8px_rgba(255,0,127,0.8)]' : 'text-gray-500 hover:text-white'}`}
+        aria-label="Cambiar a Español"
+    >
+        ES
+    </a>
+    <span class="text-white/20 text-xs">|</span>
+    <a 
+        href="/en" 
+        class={`lang-switch text-xs font-bold transition-all duration-300 ${currentLang === 'en' ? ' text-[#df87b3] drop-shadow-[0_0_8px_rgba(0,255,255,0.8)]' : 'text-gray-500 hover:text-white'}`}
+        aria-label="Switch to English"
+    >
+        EN
+    </a>
+</div>

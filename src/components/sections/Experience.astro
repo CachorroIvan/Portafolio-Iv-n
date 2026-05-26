@@ -1,0 +1,48 @@
+---
+import CardExperience from '../cards/CardExperience.astro';
+
+const experiences = [
+    {
+        title: "Full Stack Developer & Frontend Specialist",
+        company: "Kinasis",
+        period: "2025 - Presente",
+        description: "Encargado de desarrollar y mantener aplicaciones web utilizando tecnologías modernas. Implementación de interfaces de usuario responsivas con Vue.js y Tailwind CSS, y desarrollo de funcionalidades backend con Node.js y Electron para soluciones de escritorio.",
+        tech: ["Electron", "Vue.js", "Node.js", "Tailwind CSS", "JavaScript", "Python"],
+        color: "from-[#ff007f] to-[#ff007f]/50"
+    },
+    {
+        title: "QA & Auditor Técnico",
+        company: "Claro Cloud",
+        period: "2026 - Presente",
+        description: "Ejecución de auditorías técnicas para la red de portales web en la región LATAM (Perú, Argentina, Chile, Uruguay, Nicaragua, etc..). Identificación, documentación y reporte de bugs UI/UX para asegurar la calidad de despliegues en producción.",
+        tech: ["QA", "Auditoría Web", "UI/UX", "PhpCollab"],
+        color: "from-[#00ffff] to-[#00ffff]/50"
+    },
+    {
+        title: "Ingeniería en Computación",
+        company: "ESIME Culhuacán (IPN)",
+        period: "2022 - Presente",
+        description: "Formación integral en ciencias de la computación, algoritmos y diseño de hardware/software. Desarrollo de proyectos académicos avanzados utilizando C++, Python, Matlab y electrónica para resolver problemas complejos y optimizar sistemas computacionales.",
+        tech: ["C++", "Python", "Matlab", "Electrónica"],
+        color: "from-purple-500 to-purple-500/50"
+    }
+];
+---
+
+<section id="experiencia" class="section-spacing">
+    <div class="container-base">
+        <div class="heading-section">
+            <h2 class="heading-main">
+                Mi <span class="text-transparent bg-clip-text bg-linear-to-r from-[#00ffff] to-[#ff007f]">Trayectoria</span>
+            </h2>
+            <p class="heading-description">Experiencia profesional y formación académica.</p>
+        </div>
+
+        <div class="relative border-l-2 border-white/10 ml-2 md:ml-6 space-y-8 md:space-y-12">
+            {experiences.map((exp) => (
+                <CardExperience {...exp} />
+            ))}
+        </div>
+    </div>
+</section>
+

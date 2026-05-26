@@ -1,0 +1,79 @@
+---
+import CardProject from '../../cards/CardProject.astro';
+
+const projects = [
+    {
+        title: "BJT Polarization Calculator",
+        description: "Engineering tool for calculating and plotting the load line and Q-point (ICQ, VCEQ) of transistors. Supports multiple configurations.",
+        tech: ["JavaScript", "Mathematics", "Data Viz", "CSS"],
+        link: "https://polarizacion-bjt.netlify.app",
+        github: "https://github.com/CachorroIvan/Polarizaci-n-BJT.git",
+        status: "Deployed",
+        color: "from-[#00ffff] to-blue-500",
+        gallery: ["works/bjt/bjt1.png", "works/bjt/bjt2.png", "works/bjt/bjt3.png", "works/bjt/bjt4.png", "works/bjt/bjt5.png"] 
+    },
+    {
+        title: "Custom Web Development (Freelance)",
+        description: "Design and development of professional portfolios for engineers. Creation of Light/Dark themes and performance optimization.",
+        tech: ["Astro", "Tailwind CSS", "UI/UX"],
+        link: [
+            "https://portafolio-albertodlm.netlify.app", 
+            "https://joshua-portafolio.netlify.app" 
+        ],
+        github: [
+            "https://github.com/CachorroIvan/Portafolio-Alberto.git",
+            "https://github.com/CachorroIvan/Portafolio-Joshua.git"],
+        status: "Deployed",
+        color: "from-orange-400 to-amber-500",
+        gallery: ["works/freelance/Beto.png", "works/freelance/Josh.png"]
+    },
+    {
+        title: "Crypto Price Tracker",
+        description: "Web application that consumes an external API to monitor cryptocurrency prices in real-time. Styled and responsive interface.",
+        tech: ["Vue.js", "API REST", "SASS"],
+        link: "https://frabjous-dieffenbachia-bc4288.netlify.app",
+        github: "https://github.com/CachorroIvan/cripto-managment.git",
+        status: "Deployed",
+        color: "from-[#ff007f] to-rose-500",
+        gallery: ["works/Cripto/bitcoin.png", "works/Cripto/cripto.png", "works/Cripto/dollar.png", "works/Cripto/litecoin.png",]
+    },
+    {
+        title: "Task Manager App",
+        description: "Web application for task management with progress tracking through a status bar. Built with a focus on data reactivity.",
+        tech: ["Vue.js", "Bootstrap", "JavaScript"],
+        link: "#",
+        github: "https://github.com/CachorroIvan/task-organizer.git",
+        status: "Deployed Repository",
+        color: "from-emerald-400 to-teal-500",
+        gallery: ["works/Task/complete.png", "works/Task/task.png", "works/Task/To-Do.png"]
+    },
+    {
+        title: "Gift Router",
+        description: "Web page that extracts gifts and stickers from an external API called Giphy. Allows users to search and visualize multimedia content quickly and easily.",
+        tech: ["Vue.js", "Bootstrap", "UI/UX", "API REST"],
+        link: "https://gift-router.netlify.app",
+        github: "https://github.com/CachorroIvan/Gif-Router.git", 
+        status: "Deployed",
+        color: "from-orange-400 to-amber-500", 
+        gallery: ["/works/gift/home.png", "works/gift/gifts.png", "works/gift/stickers.png"]
+    }
+];
+---
+<section id="proyectos" class="section-spacing">
+    <div class="container-base">
+        <div class="heading-section">
+            <h2 class="heading-main">
+                featured <span class="text-transparent bg-clip-text bg-linear-to-r from-[#00ffff] to-[#ff007f]">Projects</span>
+            </h2>
+            <p class="heading-description">Functional solutions, API consumption, and engineering tools.</p>
+        </div>
+
+        <div class="grid grid-cols-1 gap-6 md:gap-8">
+            {projects.map((project, index) => (
+                <div data-aos="fade-up" data-aos-delay={index * 100}>
+                    <CardProject {...project} reverse={index % 2 === 1} lang="en" />
+                </div>
+            ))}
+        </div>
+    </div>
+</section>

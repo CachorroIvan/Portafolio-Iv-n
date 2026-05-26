@@ -1,0 +1,73 @@
+---
+import CardCertificate from '../../cards/CardCertificate.astro';
+
+const certificates = [
+    {
+        title: "JavaScript, Bootstrap & PHP",
+        category: "Web Development",
+        year: "2021",
+        description: "Comprehensive training in CSS, JavaScript and PHP for the creation of dynamic web applications.",
+        image: "/certificates/DesarrolloWeb.jpg", 
+        color: "from-blue-400 to-indigo-500"
+    },
+    {
+        title: "Vue.js 3 From Scratch",
+        category: "Vue.js Framework",
+        year: "2025",
+        description: "Specialized in creating reactive and modern user interfaces using the Vue ecosystem.",
+        image: "/certificates/vue3.jpg", 
+        color: "from-emerald-400 to-teal-500"
+    },
+    {
+        title: "Ultra-Fast Web Development with Astro",
+        category: "Astro Mastery",
+        year: "2025",
+        description: "Deep dive into content-based websites with Astro's island architecture.",
+        image: "/certificates/astro.jpg",
+        color: "from-orange-400 to-rose-500"
+    },
+    {
+        title: "Fundamentals of Software Architecture",
+        category: "Software Architecture",
+        year: "2025",
+        description: "Principles of design, scalability and structure for robust software systems.",
+        image: "/certificates/Arquitectura.png",
+        color: "from-[#00ffff] to-blue-500"
+    },
+    {
+        title: "NodeJS: Beginner Practical Guide",
+        category: "Backend with Node.js",
+        year: "2025",
+        description: "Development of scalable server-side applications, REST APIs and database integrations.",
+        image: "/certificates/nodejs.jpg",
+        color: "from-green-400 to-emerald-600"
+    },
+    {
+        title: "Learn Photoshop in 18 Days",
+        category: "Graphic Design",
+        year: "2021",
+        description: "Expert in digital image manipulation and creation of visual assets for modern UI/UX.",
+        image: "/certificates/photoshop.jpg",
+        color: "from-purple-400 to-[#ff007f]"
+    }
+];
+---
+
+<section id="certificaciones" class="section-spacing ">
+    <div class="container-base">
+        
+        <div class="heading-section">
+            <h2 class="heading-main">
+                My <span class="text-transparent bg-clip-text bg-linear-to-r from-purple-500 to-[#ff007f]">Certifications</span>
+            </h2>
+            <p class="heading-description">Validated skills and continuous professional growth.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            {certificates.map((cert) => (
+                <CardCertificate {...cert} />
+            ))}
+        </div>
+        
+    </div>
+</section>
