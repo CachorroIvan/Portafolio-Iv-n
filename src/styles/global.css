@@ -28,9 +28,9 @@
     @apply bg-clip-text text-transparent bg-linear-to-r from-[#00ffff] to-[#ff007f];
   }
 
-  /* Global container and responsive utilities */
+
   .container-base {
-    @apply w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+    @apply container mx-auto px-4 sm:px-6 max-w-6xl;
   }
 
   .section-spacing {

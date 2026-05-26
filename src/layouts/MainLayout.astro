@@ -21,7 +21,7 @@ const { title, lang = 'es' } = Astro.props;
         <meta property="og:title" content={`${title} | Ivan González - Full Stack Developer`} /> 
         <meta property="og:description" content="Portafolio de Ivan González, desarrollador Full Stack especializado en experiencias web modernas y gestión de proyectos TI." />
         <meta property="og:image" content="/img/preview/Preview.png" />   
-		<meta name="viewport" content="width=device-width" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="icon" type="image/svg+xml" href="/logo-ig.svg" />
 		<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
 		<meta name="generator" content={Astro.generator} />
@@ -41,7 +41,7 @@ const { title, lang = 'es' } = Astro.props;
         <div class="relative z-10 min-h-screen flex flex-col">
             <HeaderLayout currentLang={lang}/>
             
-            <main class="grow container mx-auto px-4 md:px-6 py-8">
+            <main class="grow container mx-auto px-4 md:px-6 py-8 overflow-x-hidden">
                 <slot />
             </main>
             <GalleryModal />
